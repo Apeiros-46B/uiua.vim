@@ -7,6 +7,19 @@ Simple plugin containing basic functionalities for writing [Uiua](https://uiua.o
 
 All features of this plugin were originally part of my personal Neovim configuration, but the links to my configuration on the official Uiua site were a bit confusing, so I moved the functionality here.
 
+<details>
+  <summary>Syntax highlighting examples</summary>
+
+  Subscripts with varying function adicity (e.g. dyadic `box`)
+  ![](./assets/subscripts.png)
+
+  Snippet from [uiua-plot](https://github.com/Omnikar/uiua-plot) by Omnikar
+  ![](./assets/uiua_plot.png)
+
+  Brainfuck interpreter by clarity (member of Uiua Discord)
+  ![](./assets/bf.png)
+</details>
+
 ## Installation
 
 ### [vim-plug](https://github.com/junegunn/vim-plug)
