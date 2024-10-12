@@ -24,7 +24,7 @@ syn match   uiuaMonadic  '[⊏⊡↙↘⊂☇↻⤸◫⍉]\(__[0-9]\+\|[₀-₉]
 syn match   uiuaMonadicP '[¬±`¯⌵∿]\|[√⌊⌈⁅]\(__[0-9]\+\|[₀-₉]\+\)\?'
 syn match   uiuaMonadicP '\(!=\|<=\|>=\|[=≠<≤>≥+\-×*÷%◿ⁿₙ↧↥∠ℂ]\)\(__[0-9]\+\|[₀-₉]\+\)'
 syn match   uiuaDyadic   '□\(__0*2\|₀*₂\)'
-syn match   uiuaTriadic  '[⊟□]\(__[3-9]\|__[0-9]\{2,}\|[₃-₉]\|[₀-₉]\{2,}\)'
+syn match   uiuaOther    '[⊟□]\(__[3-9]\|__[0-9]\{2,}\|[₃-₉]\|[₀-₉]\{2,}\)'
 syn match   uiuaNoadic   '[⊟□]\(__0\+\|₀\+\)'
 
 " }}}
@@ -50,7 +50,7 @@ syn match   uiuaDyadic '[≍↯▽⌕∊∈⊗⍤⦷]'
 syn keyword uiuaDyadicP  add sub[tract] mul[tiply] div[ide] mod[ulus] pow[er] log[arithm] min[imum] max[imum] ata[ngent] com[plex]
 
 " triadic (or above) functions
-syn keyword uiuaTriadic audio
+syn keyword uiuaOther audio
 
 " monadic modifiers
 " gap, dip, and identity single-letter spellings aren't accounted for
@@ -69,7 +69,7 @@ syn match   uiuaOtherMod '[⨬⍢⍜⬚⊓⊃⍣]'
 " &s and &sc, etc. is correct
 
 " modules
-syn match   uiuaTriadicSF    '\v\&(memcpy)'
+syn match   uiuaOtherSF    '\v\&(memcpy)'
 syn match   uiuaDyadicSF     '\v\&(runs|rs|rb|ru|w|fwa|tcpsrt|tcpswt|ffi)'
 syn match   uiuaMonadicSF    '\v\&(sl|s|pf|p|raw|var|runi|runc|cd|cl|fo|fc|fde|ftr|fe|fld|fif|fras|frab|fwa|fmd|ims|gifs|ap|tlsc|tlsl|tcpl|tcpaddr|tcpa|tcpc|tcpsnb|invk|exit|memfree|camcap)'
 syn match   uiuaNoadicSF     '\v\&(clip|sc|ts|args|asr)'
@@ -102,8 +102,8 @@ syn match   uiuaUnicodeLiteral '\\\\[0-9a-fA-F]\{,5}'
 " function signatures
 syn match   uiuaSignature '|\d\+\(\.\d\+\)\?'
 
-" assignments, stranded arrays, and ' or '' line joining
-syn match   uiuaFaded '[←↚_;]\|=\~\|\~'
+" assignments, stranded arrays, and ; or ;; line joining
+syn match   uiuaPunctuation '[←↚_;]\|=\~\|\~'
 
 " modules
 syn match   uiuaModPunct contained '---\|┌─╴\|└─╴\|\~'
@@ -126,44 +126,44 @@ syn region  uiuaComment start='#' end='$' contains=uiuaSemanticComment,uiuaSigna
 " }}}
 
 " {{{ highlight groups
-hi def link uiuaIdentifier          Normal
-hi def link uiuaMacro               Normal
-hi def link uiuaMacroSpecial        Normal
+hi def link uiuaIdentifier       Normal
+hi def link uiuaMacro            Normal
+hi def link uiuaMacroSpecial     Normal
 
-hi def link uiuaStack               Normal
-hi def link uiuaNoadic              Red
-hi def link uiuaNoadicSF            Red
-hi def link uiuaMonadic             Green
-hi def link uiuaMonadicSF           Green
-hi def link uiuaMonadicP            Green
-hi def link uiuaDyadic              Blue
-hi def link uiuaDyadicSF            Blue
-hi def link uiuaDyadicP             Blue
-hi def link uiuaTriadic             Purple
-hi def link uiuaTriadicSF           Purple
-hi def link uiuaMonadicMod          Yellow
-hi def link uiuaMonadicModSF        Yellow
-hi def link uiuaOtherMod            Purple
+hi def link uiuaStack            Normal
+hi def link uiuaNoadic           Red
+hi def link uiuaNoadicSF         Red
+hi def link uiuaMonadic          Green
+hi def link uiuaMonadicSF        Green
+hi def link uiuaMonadicP         Green
+hi def link uiuaDyadic           Blue
+hi def link uiuaDyadicSF         Blue
+hi def link uiuaDyadicP          Blue
+hi def link uiuaOther            Purple
+hi def link uiuaOtherSF          Purple
+hi def link uiuaMonadicMod       Yellow
+hi def link uiuaMonadicModSF     Yellow
+hi def link uiuaOtherMod         Purple
 
-hi def link uiuaNum                 Orange
-hi def link uiuaEsc                 Aqua
-hi def link uiuaCharSpace           IncSearch
-hi def link uiuaChar                Aqua
-hi def link uiuaFmt                 Aqua
-hi def link uiuaStr                 Aqua
-hi def link uiuaUnicodeLiteral      Normal
+hi def link uiuaNum              Orange
+hi def link uiuaEsc              Aqua
+hi def link uiuaCharSpace        IncSearch
+hi def link uiuaChar             Aqua
+hi def link uiuaFmt              Aqua
+hi def link uiuaStr              Aqua
+hi def link uiuaUnicodeLiteral   Normal
 
-hi def link uiuaSignature           Normal
-hi def link uiuaFaded               Normal
-hi def link uiuaModPunct            Normal
-hi def link uiuaModName             Yellow
-hi def link uiuaModMemberName       Normal
-hi def link uiuaModBind             Yellow
-hi def link uiuaModRef              Yellow
-hi def link uiuaModImportMember     Normal
-hi def link uiuaDebug               Normal
-hi def link uiuaLabel               Green
-hi def link uiuaSemanticComment     Comment
-hi def link uiuaSignatureComment    Comment
-hi def link uiuaComment             Comment
+hi def link uiuaSignature        Normal
+hi def link uiuaPunctuation      Normal
+hi def link uiuaModPunct         Normal
+hi def link uiuaModName          Yellow
+hi def link uiuaModMemberName    Normal
+hi def link uiuaModBind          Yellow
+hi def link uiuaModRef           Yellow
+hi def link uiuaModImportMember  Normal
+hi def link uiuaDebug            Normal
+hi def link uiuaLabel            Green
+hi def link uiuaSemanticComment  Comment
+hi def link uiuaSignatureComment Comment
+hi def link uiuaComment          Comment
 " }}}

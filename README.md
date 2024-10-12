@@ -39,45 +39,47 @@ The default highlight groups try to mimic the Uiua pad. If you need to modify an
   <summary>Default highlight groups</summary>
 
   ```vim
-  hi def link uiuaIdentifier          Normal
-  hi def link uiuaMacro               Normal
-  hi def link uiuaMacroSpecial        Normal
+  hi def link uiuaIdentifier       Normal
+  hi def link uiuaMacro            Normal
+  hi def link uiuaMacroSpecial     Normal
   
-  hi def link uiuaStack               Normal
-  hi def link uiuaNoadic              Red
-  hi def link uiuaNoadicSF            Red
-  hi def link uiuaMonadic             Green
-  hi def link uiuaMonadicSF           Green
-  hi def link uiuaMonadicP            Green
-  hi def link uiuaDyadic              Blue
-  hi def link uiuaDyadicSF            Blue
-  hi def link uiuaDyadicP             Blue
-  hi def link uiuaTriadic             Purple
-  hi def link uiuaTriadicSF           Purple
-  hi def link uiuaMonadicMod          Yellow
-  hi def link uiuaMonadicModSF        Yellow
-  hi def link uiuaOtherMod            Purple
+  " SF = system function
+  " P = pervasive
+  hi def link uiuaStack            Normal
+  hi def link uiuaNoadic           Red
+  hi def link uiuaNoadicSF         Red
+  hi def link uiuaMonadic          Green
+  hi def link uiuaMonadicSF        Green
+  hi def link uiuaMonadicP         Green
+  hi def link uiuaDyadic           Blue
+  hi def link uiuaDyadicSF         Blue
+  hi def link uiuaDyadicP          Blue
+  hi def link uiuaOther            Purple " triadic and above
+  hi def link uiuaOtherSF          Purple
+  hi def link uiuaMonadicMod       Yellow
+  hi def link uiuaMonadicModSF     Yellow
+  hi def link uiuaOtherMod         Purple " dyadic and above
   
-  hi def link uiuaNum                 Orange
-  hi def link uiuaEsc                 Aqua
-  hi def link uiuaCharSpace           IncSearch
-  hi def link uiuaChar                Aqua
-  hi def link uiuaFmt                 Aqua
-  hi def link uiuaStr                 Aqua
-  hi def link uiuaUnicodeLiteral      Normal
+  hi def link uiuaNum              Orange
+  hi def link uiuaEsc              Aqua
+  hi def link uiuaCharSpace        IncSearch " space in character literals
+  hi def link uiuaChar             Aqua " character literal
+  hi def link uiuaFmt              Aqua " underscore in format strings
+  hi def link uiuaStr              Aqua
+  hi def link uiuaUnicodeLiteral   Normal " unicode character entry
   
-  hi def link uiuaSignature           Normal
-  hi def link uiuaFaded               Normal
-  hi def link uiuaModPunct            Normal
-  hi def link uiuaModName             Yellow
-  hi def link uiuaModMemberName       Normal
-  hi def link uiuaModBind             Yellow
-  hi def link uiuaModRef              Yellow
-  hi def link uiuaModImportMember     Normal
-  hi def link uiuaDebug               Normal
-  hi def link uiuaLabel               Green
-  hi def link uiuaSemanticComment     Comment
-  hi def link uiuaSignatureComment    Comment
-  hi def link uiuaComment             Comment
+  hi def link uiuaSignature        Normal
+  hi def link uiuaPunctuation      Normal " assignments, strands, and ;/;;
+  hi def link uiuaModPunct         Normal " module scopes and ~ in module syntax
+  hi def link uiuaModName          Yellow
+  hi def link uiuaModMemberName    Normal
+  hi def link uiuaModBind          Yellow " 'Module ~ "file.ua"'
+  hi def link uiuaModRef           Yellow " 'Module~Member'
+  hi def link uiuaModImportMember  Normal " ~ Member1 Member2
+  hi def link uiuaDebug            Normal
+  hi def link uiuaLabel            Green
+  hi def link uiuaSemanticComment  Comment " 'Experimental' and 'Track caller'
+  hi def link uiuaSignatureComment Comment
+  hi def link uiuaComment          Comment
   ```
 </details>
