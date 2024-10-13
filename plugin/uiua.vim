@@ -1,7 +1,7 @@
+let g:uiua_recommended_style = v:true
 let g:uiua_format_on_save = v:true
 let g:uiua_path = 'uiua'
 let g:uiua_dark_theme = v:true
-let g:uiua_recommended_style = v:true
 
 au BufWritePost *.ua	call uiua#Fmt(expand('<amatch>'))
 

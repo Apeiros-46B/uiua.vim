@@ -3,7 +3,8 @@
 Simple plugin containing basic functionalities for writing [Uiua](https://uiua.org) in Vim/Neovim. All features of this plugin were originally part of my personal Neovim configuration, but the links to my configuration on the official Uiua site were a bit confusing, so I moved the functionality here.
 
 This plugin offers:
-- Format on save
+- Filetype detection (sets `commentstring` and optionally `tabstop` and `expandtab`)
+- Automatically call the Uiua formatter when saving Uiua files
 - Handwritten syntax highlighting mimicking the Uiua pad's colorscheme
 
 <details>
@@ -59,10 +60,10 @@ Highlight groups used by the syntax highlighting are listed below. By default, t
 For more in-depth highlight customization, see the [Overriding highlighting](#overriding-highlighting) section.
 
 You should also customize the following options:
+- `g:uiua_recommended_style` - Whether to to set `tabstop=2` and `expandtab` in Uiua files (default = true)
 - `g:uiua_format_on_save` - Whether or not to format Uiua files on save (default = true)
 - `g:uiua_path` - Path to Uiua executable (default = "uiua")
 - `g:uiua_dark_mode` - Whether to use the dark-mode foreground color (default = true)
-- `g:uiua_recommended_style` - Whether to to set `tabstop=2` and `expandtab` in Uiua files
 
 When changing `g:uiua_dark_mode` (e.g. in a live theme reloading setup), you should call `uiua#ApplyTheme()` after setting the variable.
 
