@@ -9,16 +9,16 @@ This plugin offers:
 <details>
   <summary>Syntax highlighting examples</summary>
 
-  Subscripts with varying function adicity (e.g. dyadic `box`)
+  Subscripts with varying function adicity (e.g. dyadic `box`)  
   ![](./assets/subscripts.png)
 
-  Snippet from [uiua-plot](https://github.com/Omnikar/uiua-plot) by Omnikar
+  Snippet from [uiua-plot](https://github.com/Omnikar/uiua-plot) by Omnikar  
   ![](./assets/uiua_plot.png)
 
-  Brainfuck interpreter by clarity (member of the Uiua Discord)
+  Brainfuck interpreter by clarity (member of the Uiua Discord)  
   ![](./assets/bf.png)
 
-  Conway's Game of Life
+  Conway's Game of Life  
   ![](./assets/life.png)
 </details>
 
