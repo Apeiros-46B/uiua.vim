@@ -68,7 +68,7 @@ syn match   uiuaDyadicMod '[⨬⍢⍜⬚⊓⊃⍣]'
 syn match   uiuaDyadicMod '\a\+\(__[0-9]\+\|[₀-₉]\+\)\?\(!!\|‼\)'
 
 syn keyword uiuaTriadicMod astar
-syn match   uiuaTriadicMod '\a\+\(__[0-9]\+\|[₀-₉]\+\)\?\(‼!\|!‼\|!\{3,}\|‼\{2,}!\?\)'
+syn match   uiuaTriadicMod '\a\+\(__[0-9]\+\|[₀-₉]\+\)\?\(‼!\|!‼\|!\{3,}\|‼\{2,}!*\)'
 " }}}
 
 " {{{ system functions
