@@ -62,6 +62,7 @@ You should also customize the following options:
 - `g:uiua_format_on_save` - Whether or not to format Uiua files on save (default = true)
 - `g:uiua_path` - Path to Uiua executable (default = "uiua")
 - `g:uiua_dark_mode` - Whether to use the dark-mode foreground color (default = true)
+- `g:uiua_recommended_style` - Whether to to set `tabstop=2` and `expandtab` in Uiua files
 
 When changing `g:uiua_dark_mode` (e.g. in a live theme reloading setup), you should call `uiua#ApplyTheme()` after setting the variable.
 
