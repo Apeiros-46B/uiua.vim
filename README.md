@@ -41,19 +41,22 @@ require('lazy').setup {
 ### Configure
 
 Highlight groups used by the syntax highlighting are listed below. By default, these are set to colors from the Uiua pad (with some slight adjustments). You may want to set these to colors matching your colorscheme of choice.
-- `uiuaRed`
-- `uiuaOrange`
-- `uiuaYellow`
-- `uiuaBeige`
-- `uiuaGreen`
-- `uiuaAqua`
-- `uiuaBlue`
-- `uiuaIndigo`
-- `uiuaPurple`
-- `uiuaPink`
-- `uiuaComment`
-- `uiuaForegroundDark` - This is used when `g:uiua_dark_mode` is true
+- `uiuaRed` - Noadic functions
+- `uiuaOrange` - Number literals and constants
+- `uiuaYellow` - Monadic modifiers/macros
+- `uiuaBeige` - Modules
+- `uiuaGreen` - Monadic functions
+- `uiuaAqua` - String and character literals
+- `uiuaBlue` - Dyadic functions
+- `uiuaIndigo` - Triadic functions
+- `uiuaPurple` - Dyadic modifiers/macros
+- `uiuaPink` - Tetradic functions
+- `uiuaLightPink` - Triadic+ modifiers/macros
+- `uiuaFaded` - Comments and strands
+- `uiuaForegroundDark` - All others; this is used when `g:uiua_dark_mode` is true
 - `uiuaForegroundLight` - This is used when `g:uiua_dark_mode` is false
+
+For more in-depth highlight customization, see the [Overriding highlighting](#overriding-highlighting) section.
 
 You should also customize the following options:
 - `g:uiua_format_on_save` - Whether or not to format Uiua files on save (default = true)
@@ -76,7 +79,6 @@ The default highlight groups try to mimic the Uiua pad (in terms of what things 
 
   ```vim
   hi def link uiuaIdentifier       uiuaForeground
-  hi def link uiuaMacro            uiuaForeground
   hi def link uiuaMacroSpecial     uiuaForeground " macro assignments & placeholders
   hi def link uiuaPunctuation      uiuaForeground
 
@@ -93,13 +95,15 @@ The default highlight groups try to mimic the Uiua pad (in terms of what things 
   hi def link uiuaDyadicP          uiuaBlue
   hi def link uiuaTriadic          uiuaIndigo
   hi def link uiuaTriadicSF        uiuaIndigo
-  hi def link uiuaOther            uiuaPink " 4 or more arguments
-  hi def link uiuaOtherSF          uiuaPink
+  hi def link uiuaTetradic         uiuaPink
+  hi def link uiuaPentadic         uiuaForeground " 5 or more arguments
   hi def link uiuaMonadicMod       uiuaYellow
   hi def link uiuaMonadicModSF     uiuaYellow
-  hi def link uiuaOtherMod         uiuaPurple
+  hi def link uiuaDyadicMod        uiuaPurple
+  hi def link uiuaTriadicMod       uiuaLightPink
 
   hi def link uiuaNum              uiuaOrange
+  hi def link uiuaNumShadow        uiuaForeground " e, i, MaxInt, NaN, W, True, False, NULL
   hi def link uiuaEsc              uiuaAqua
   hi def link uiuaCharSpace        IncSearch " space in character literals
   hi def link uiuaChar             uiuaAqua " character literal
@@ -116,8 +120,8 @@ The default highlight groups try to mimic the Uiua pad (in terms of what things 
   hi def link uiuaModImportMember  uiuaForeground " ~ Member1 Member2
   hi def link uiuaDebug            uiuaForeground
   hi def link uiuaLabel            uiuaGreen
-  hi def link uiuaSemanticComment  uiuaComment " 'Experimental' and 'Track caller'
-  hi def link uiuaSignatureComment uiuaComment
-  hi def link uiuaComment          uiuaComment
+  hi def link uiuaSemanticComment  uiuaFaded " 'Experimental' and 'Track caller'
+  hi def link uiuaSignatureComment uiuaFaded
+  hi def link uiuaComment          uiuaFaded
   ```
 </details>

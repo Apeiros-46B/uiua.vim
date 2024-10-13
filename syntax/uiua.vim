@@ -10,9 +10,8 @@ let b:current_syntax = "uiua"
 syn iskeyword a-z,A-Z
 
 syn match   uiuaIdentifier   '\a\+\(__[0-9]\+\|[₀-₉]\+\)\?'
-syn match   uiuaMacro        '\a\+[‼!]\+'
 syn match   uiuaMacroSpecial '\(\^[0-9]\+\|[←↚]^\)'
-syn match   uiuaPunctuation  '[←↚_;~[]{}()]\|=\~'
+syn match   uiuaPunctuation  '[←↚_;~\[\]{}()]\|=\~'
 
 " {{{ functions and modifiers
 " {{{ subscriptable functions that can vary in adicity
@@ -27,7 +26,8 @@ syn match   uiuaMonadicP '[¬±`¯⌵∿]\|[√⌊⌈⁅]\(__[0-9]\+\|[₀-₉]\
 syn match   uiuaMonadicP '\(!=\|<=\|>=\|[=≠<≤>≥+\-×*÷%◿ⁿₙ↧↥∠ℂ]\)\(__[0-9]\+\|[₀-₉]\+\)'
 syn match   uiuaDyadic   '□\(__0*2\|₀*₂\)'
 syn match   uiuaTriadic  '[⊟□]\(__3\|₃\)'
-syn match   uiuaOther    '[⊟□]\(__[4-9]\|__[0-9]\{2,}\|[₄-₉]\|[₀-₉]\{2,}\)'
+syn match   uiuaTetradic '[⊟□]\(__4\|₄\)'
+syn match   uiuaPentadic '[⊟□]\(__[5-9]\|__[0-9]\{2,}\|[₅-₉]\|[₀-₉]\{2,}\)'
 syn match   uiuaNoadic   '[⊟□]\(__0\+\|₀\+\)'
 " }}}
 
@@ -59,11 +59,16 @@ syn keyword uiuaTriadic insert audio
 " 1. it's not very useful since adjacent ones won't be highlighted
 " 2. it'll get formatted anyways
 syn keyword uiuaMonadicMod gap dip on by wit[h] off abo[ve] bel[ow] bac[kward] eac[h] row[s] tab[le] inv[entory] rep[eat] fol[d] reduce scan gro[up] par[tition] un ant[i] bot[h] con[tent] tup[les] memo quote comptime stringify spawn pool case struct obv[erse]
-syn match   uiuaMonadicMod '[⋅⊙⟜⊸⤙⤚◠◡˜⊞⍚∧/\\⊕⊜°⌝◇⌅]\|[∩≡∵⍥⧅]\(__[0-9]\+\|[₀-₉]\+\)\?'
+syn match   uiuaMonadicMod '[⋅⊙⟜⊸⤙⤚◠◡˜⊞⍚∧/\\⊕⊜°⌝◇⌅]'
+syn match   uiuaMonadicMod '[∩≡∵⍥⧅]\(__[0-9]\+\|[₀-₉]\+\)\?'
+syn match   uiuaMonadicMod '\a\+\(__[0-9]\+\|[₀-₉]\+\)\?!'
 
-" non-monadic modifiers
-syn keyword uiuaOtherMod sw[itch] do und[er] fil[l] bra[cket] for[k] try astar
-syn match   uiuaOtherMod '[⨬⍢⍜⬚⊓⊃⍣]'
+syn keyword uiuaDyadicMod sw[itch] do und[er] fil[l] bra[cket] for[k] try
+syn match   uiuaDyadicMod '[⨬⍢⍜⬚⊓⊃⍣]'
+syn match   uiuaDyadicMod '\a\+\(__[0-9]\+\|[₀-₉]\+\)\?\(!!\|‼\)'
+
+syn keyword uiuaTriadicMod astar
+syn match   uiuaTriadicMod '\a\+\(__[0-9]\+\|[₀-₉]\+\)\?\(‼!\|!‼\|!\{3,}\|‼\{2,}!\?\)'
 " }}}
 
 " {{{ system functions
@@ -79,9 +84,11 @@ syn match   uiuaMonadicModSF '&ast'
 " }}}
 
 " {{{ literals
-" numeric literal and numeric constants
-syn keyword uiuaNum eta pi tau inf[inity] e i NaN W MaxInt True False NULL
+" numeric literal and numeric constants (including shadowable)
+syn keyword uiuaNum eta pi tau inf[inity]
 syn match   uiuaNum '[ηπτ∞]\|[¯`]\?\d\+\(\.\d\+\)\?\(e[¯`]\?\d\+\)\?'
+
+syn keyword uiuaNumShadow e i NaN W MaxInt True False NULL
 
 " escape sequence and format placeholder
 syn match   uiuaEsc contained /\\\([\\'"_0nrt]\|\\x[0-9a-fA-F]\{2}\|\\u[0-9a-fA-F]\{2}\)/
@@ -126,7 +133,6 @@ syn region  uiuaComment start='#' end='$' contains=uiuaSemanticComment,uiuaSigna
 
 " {{{ highlight groups
 hi def link uiuaIdentifier       uiuaForeground
-hi def link uiuaMacro            uiuaForeground
 hi def link uiuaMacroSpecial     uiuaForeground
 hi def link uiuaPunctuation      uiuaForeground
 
@@ -141,13 +147,15 @@ hi def link uiuaDyadicSF         uiuaBlue
 hi def link uiuaDyadicP          uiuaBlue
 hi def link uiuaTriadic          uiuaIndigo
 hi def link uiuaTriadicSF        uiuaIndigo
-hi def link uiuaOther            uiuaPink
-hi def link uiuaOtherSF          uiuaPink
+hi def link uiuaTetradic         uiuaPink
+hi def link uiuaPentadic         uiuaForeground
 hi def link uiuaMonadicMod       uiuaYellow
 hi def link uiuaMonadicModSF     uiuaYellow
-hi def link uiuaOtherMod         uiuaPurple
+hi def link uiuaDyadicMod        uiuaPurple
+hi def link uiuaTriadicMod       uiuaLightPink
 
 hi def link uiuaNum              uiuaOrange
+hi def link uiuaNumShadow        uiuaForeground
 hi def link uiuaEsc              uiuaAqua
 hi def link uiuaCharSpace        IncSearch
 hi def link uiuaChar             uiuaAqua
@@ -164,7 +172,7 @@ hi def link uiuaModRef           uiuaBeige
 hi def link uiuaModImportMember  uiuaForeground
 hi def link uiuaDebug            uiuaForeground
 hi def link uiuaLabel            uiuaGreen
-hi def link uiuaSemanticComment  uiuaComment
-hi def link uiuaSignatureComment uiuaComment
-hi def link uiuaComment          uiuaComment
+hi def link uiuaSemanticComment  uiuaFaded
+hi def link uiuaSignatureComment uiuaFaded
+hi def link uiuaComment          uiuaFaded
 " }}}

@@ -14,8 +14,9 @@ hi def uiuaBlue            ctermfg=39  guifg=#54b0fc
 hi def uiuaIndigo          ctermfg=62  guifg=#8078f1
 hi def uiuaPurple          ctermfg=129 guifg=#cc6be9
 hi def uiuaPink            ctermfg=207 guifg=#f576d8
-hi def uiuaComment         ctermfg=244 guifg=#888888
-hi def uiuaForegroundDark  ctermfg=0 guifg=#d1daec
-hi def uiuaForegroundLight ctermfg=7 guifg=#334444
+hi def uiuaLightPink       ctermfg=218 guifg=#f5a9b8
+hi def uiuaFaded           ctermfg=244 guifg=#888888
+hi def uiuaForegroundDark  ctermfg=0   guifg=#d1daec
+hi def uiuaForegroundLight ctermfg=7   guifg=#334444
 
 call uiua#ApplyTheme()
