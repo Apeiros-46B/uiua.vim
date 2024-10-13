@@ -18,10 +18,11 @@ syn match   uiuaPunctuation  '[←↚_;~[]{}()]\|=\~'
 " {{{ subscriptable functions that can vary in adicity
 " the order in which these are defined is weird but this is intentional to
 " make the highlight priority correct
-syn match   uiuaDyadic   '⊟\(__0*2\|₀*₂\)\?\|[⊏⊡↙↘⊂☇↻⤸◫⍉]'
+syn match   uiuaDyadic   '⊟\(__0*2\|₀*₂\)\?\|[⊏⊡↙↘⊂☇↻⤸◫]'
 syn match   uiuaDyadicP  '\(!=\|<=\|>=\|[=≠<≤>≥+\-×*÷%◿ⁿₙ↧↥∠ℂ]\)'
 syn match   uiuaMonadic  '□\(__0*1\|₀*₁\)\?\|⊟\(__0*1\|₀*₁\)'
-syn match   uiuaMonadic  '[⊏⊡↙↘⊂☇↻⤸◫⍉]\(__[0-9]\+\|[₀-₉]\+\)'
+syn match   uiuaMonadic  '⍉\(__[0-9]\+\|[₀-₉]\+\)\?'
+syn match   uiuaMonadic  '[⊏⊡↙↘⊂☇↻⤸◫]\(__[0-9]\+\|[₀-₉]\+\)'
 syn match   uiuaMonadicP '[¬±`¯⌵∿]\|[√⌊⌈⁅]\(__[0-9]\+\|[₀-₉]\+\)\?'
 syn match   uiuaMonadicP '\(!=\|<=\|>=\|[=≠<≤>≥+\-×*÷%◿ⁿₙ↧↥∠ℂ]\)\(__[0-9]\+\|[₀-₉]\+\)'
 syn match   uiuaDyadic   '□\(__0*2\|₀*₂\)'
