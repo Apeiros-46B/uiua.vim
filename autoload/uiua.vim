@@ -9,3 +9,11 @@ function uiua#Fmt(buf)
 		mkview | e | loadview
 	endif
 endfunction
+
+function uiua#ApplyTheme()
+	if g:uiua_dark_theme
+		hi def link uiuaForeground uiuaForegroundDark
+	else
+		hi def link uiuaForeground uiuaForegroundLight
+	endif
+endfunction
