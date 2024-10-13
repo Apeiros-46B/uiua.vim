@@ -81,12 +81,13 @@ The default highlight groups try to mimic the Uiua pad (in terms of what things 
 
   ```vim
   hi def link uiuaIdentifier       uiuaForeground
-  hi def link uiuaMacroSpecial     uiuaForeground " macro assignments & placeholders
-  hi def link uiuaPunctuation      uiuaForeground
+  hi def link uiuaMacroSpecial     uiuaForeground " code macro assigns & placeholders
+  hi def link uiuaPunctuation      uiuaForeground " assignments, strands, ;/;;, etc
+  hi def link uiuaDelimiters       uiuaForeground " ()[]{}
 
   " SF = system function
   " P = pervasive
-  hi def link uiuaStack            uiuaForeground
+  hi def link uiuaStack            uiuaForeground " dup over flip around pop
   hi def link uiuaNoadic           uiuaRed
   hi def link uiuaNoadicSF         uiuaRed
   hi def link uiuaMonadic          uiuaGreen

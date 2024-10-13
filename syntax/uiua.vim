@@ -11,7 +11,8 @@ syn iskeyword a-z,A-Z
 
 syn match   uiuaIdentifier   '\a\+\(__[0-9]\+\|[₀-₉]\+\)\?'
 syn match   uiuaMacroSpecial '\(\^[0-9]\+\|[←↚]^\)'
-syn match   uiuaPunctuation  '[←↚_;~\[\]{}()]\|=\~'
+syn match   uiuaPunctuation  '[←↚_;~]\|=\~'
+syn match   uiuaDelimiters   '[\[\]{}()]'
 
 " {{{ functions and modifiers
 " {{{ subscriptable functions that can vary in adicity
@@ -135,6 +136,7 @@ syn region  uiuaComment start='#' end='$' contains=uiuaSemanticComment,uiuaSigna
 hi def link uiuaIdentifier       uiuaForeground
 hi def link uiuaMacroSpecial     uiuaForeground
 hi def link uiuaPunctuation      uiuaForeground
+hi def link uiuaDelimiters       uiuaForeground
 
 hi def link uiuaStack            uiuaForeground
 hi def link uiuaNoadic           uiuaRed
