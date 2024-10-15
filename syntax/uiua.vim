@@ -43,7 +43,7 @@ syn match   uiuaNoadic '⚂'
 
 " monadic functions
 " tau, eta, pi, and infinity are considered numeric literals
-syn keyword uiuaMonadic len[gth] sha[pe] ran[ge] fir[st] las[t] rev[erse] des[hape] fix bit[s] tran[spose] ris[e] fal[e] sor[t] whe[re] cla[ssify] ded[uplicate] uni[que] box pars[e] wait recv tryrecv type repr csv json xlsx datetime fft graphemes
+syn keyword uiuaMonadic len[gth] sha[pe] ran[ge] fir[st] las[t] rev[erse] des[hape] fix bit[s] tran[spose] ris[e] fal[e] sor[t] whe[re] cla[ssify] ded[uplicate] uni[que] box bx pars[e] wait recv tryrecv type repr csv json xlsx datetime fft graphemes
 syn match   uiuaMonadic '[⧻△⇡⊢⊣⇌♭¤⋯⍏⍖⍆⊚⊛◰◴⋕↬]\|utf₈'
 syn keyword uiuaMonadicP not sig[n] abs[olute] sqr[t] sin[e] flo[or] cei[ling] rou[nd]
 
@@ -92,7 +92,7 @@ syn match   uiuaNum '[ηπτ∞]\|[¯`]\?\d\+\(\.\d\+\)\?\(e[¯`]\?\d\+\)\?'
 syn keyword uiuaNumShadow e i NaN W MaxInt True False NULL
 
 " escape sequence and format placeholder
-syn match   uiuaEsc contained /\\\([\\'"_0nrt]\|\\x[0-9a-fA-F]\{2}\|\\u[0-9a-fA-F]\{2}\)/
+syn match   uiuaEsc contained /\\\([\\'"_0nrtW]\|\\x[0-9a-fA-F]\{2}\|\\u[0-9a-fA-F]\{2}\)/
 syn match   uiuaFmt contained '_'
 
 " character literal
@@ -127,7 +127,7 @@ syn match   uiuaDebug '⸮\|?\(__[0-9]\+\|[₀-₉]\+\)\?'
 syn match   uiuaLabel '\$\a\+'
 
 " comments
-syn match   uiuaSemanticComment contained 'Track caller!\|Experimental!'
+syn match   uiuaSemanticComment contained 'Track caller!\|Experimental!\|No inline!'
 syn match   uiuaSignatureComment contained '\(\a\+ \)*?\( \a\+\)\+'
 syn region  uiuaComment start='#' end='$' contains=uiuaSemanticComment,uiuaSignatureComment
 " }}}
