@@ -1,6 +1,7 @@
 " vim:foldmethod=marker
 " Handwritten Uiua syntax highlighting by Apeiros-46B
-" VERSION: updated 2024.10.11 - for Uiua 0.13.0
+" Experimental features included, deprecated features not included
+" VERSION: updated 2025.01.06 - for Uiua 0.15.0
 
 if exists("b:current_syntax")
 	finish
@@ -9,7 +10,7 @@ endif
 let b:current_syntax = "uiua"
 syn iskeyword a-z,A-Z
 
-syn match   uiuaIdentifier   '\a\+\(__[0-9]\+\|[₀-₉]\+\)\?'
+syn match   uiuaIdentifier   '\a\+\(₋\?[₀-₉]\+\)\?'
 syn match   uiuaMacroSpecial '\(\^[0-9]\+\|[←↚]^\)'
 syn match   uiuaPunctuation  '[←↚_;~]\|=\~'
 syn match   uiuaDelimiters   '[\[\]{}()]'
@@ -18,18 +19,18 @@ syn match   uiuaDelimiters   '[\[\]{}()]'
 " {{{ subscriptable functions that can vary in adicity
 " the order in which these are defined is weird but this is intentional to
 " make the highlight priority correct
-syn match   uiuaDyadic   '⊟\(__0*2\|₀*₂\)\?\|[⊏⊡↙↘⊂☇↻⤸◫]'
-syn match   uiuaDyadicP  '\(!=\|<=\|>=\|[=≠<≤>≥+\-×*÷%◿ⁿₙ↧↥∠ℂ]\)'
-syn match   uiuaMonadic  '□\(__0*1\|₀*₁\)\?\|⊟\(__0*1\|₀*₁\)'
-syn match   uiuaMonadic  '⍉\(__[0-9]\+\|[₀-₉]\+\)\?'
-syn match   uiuaMonadic  '[⊏⊡↙↘⊂☇↻⤸◫]\(__[0-9]\+\|[₀-₉]\+\)'
-syn match   uiuaMonadicP '[¬±`¯⌵∿]\|[√⌊⌈⁅]\(__[0-9]\+\|[₀-₉]\+\)\?'
-syn match   uiuaMonadicP '\(!=\|<=\|>=\|[=≠<≤>≥+\-×*÷%◿ⁿₙ↧↥∠ℂ]\)\(__[0-9]\+\|[₀-₉]\+\)'
-syn match   uiuaDyadic   '□\(__0*2\|₀*₂\)'
-syn match   uiuaTriadic  '[⊟□]\(__3\|₃\)'
-syn match   uiuaTetradic '[⊟□]\(__4\|₄\)'
-syn match   uiuaPentadic '[⊟□]\(__[5-9]\|__[0-9]\{2,}\|[₅-₉]\|[₀-₉]\{2,}\)'
-syn match   uiuaNoadic   '[⊟□]\(__0\+\|₀\+\)'
+syn match   uiuaDyadic   '⊟\(₀*₂\)\?\|[⊏⊡↙↘⊂↻⤸◫]'
+syn match   uiuaDyadicP  '\(!=\|<=\|>=\|[=≠<≤>≥+\-×*÷%◿ⁿₙ↧↥∠ℂ∨]\)'
+syn match   uiuaMonadic  '□\(₀*₁\)\?\|⊟\(₀*₁\)'
+syn match   uiuaMonadic  '⍉\(₋\?[₀-₉]\+\)\?'
+syn match   uiuaMonadic  '[⊏⊡↙↘⊂↻⤸◫]\(₋\?[₀-₉]\+\)'
+syn match   uiuaMonadicP '[¬±`⌵∿]\|[¯√⌊⌈⁅]\(₋\?[₀-₉]\+\)\?'
+syn match   uiuaMonadicP '\(!=\|<=\|>=\|[=≠<≤>≥+\-×*÷%◿ⁿₙ↧↥∠ℂ]\)\(₋\?[₀-₉]\+\|[⌞⌟]\)'
+syn match   uiuaDyadic   '□₀*₂'
+syn match   uiuaTriadic  '[⊟□]₀*₃'
+syn match   uiuaTetradic '[⊟□]₀*₄'
+syn match   uiuaPentadic '[⊟□]\(₀*[₅-₉]\|[₀-₉]\{2,}\)'
+syn match   uiuaNoadic   '[⊟□]₀\+'
 " }}}
 
 " stack functions
@@ -48,9 +49,9 @@ syn match   uiuaMonadic '[⧻△⇡⊢⊣⇌♭¤⋯⍏⍖⍆⊚⊛◰◴⋕↬]
 syn keyword uiuaMonadicP not sig[n] abs[olute] sqr[t] sin[e] flo[or] cei[ling] rou[nd]
 
 " dyadic functions
-syn keyword uiuaDyadic joi[n] cou[ple] mat[ch] pic[k] sel[ect] res[hape] rer[ank] tak[e] dro[p] rot[ate] win[dows] kee[p] fin[d] mem[berof] ind[exof] ass[ert] mas[k] ori[ent] send regex map has get remove img layout gif gen base
+syn keyword uiuaDyadic joi[n] cou[ple] mat[ch] pic[k] sel[ect] res[hape] tak[e] dro[p] rot[ate] win[dows] kee[p] fin[d] mem[berof] ind[exof] ass[ert] mas[k] ori[ent] send regex map has get remove img layout gif gen base
 syn match   uiuaDyadic '[≍↯▽⌕∊∈⊗⍤⦷]'
-syn keyword uiuaDyadicP  add sub[tract] mul[tiply] div[ide] mod[ulus] pow[er] log[arithm] min[imum] max[imum] ata[ngent] com[plex]
+syn keyword uiuaDyadicP  add sub[tract] mul[tiply] div[ide] mod[ulus] pow[er] log[arithm] min[imum] max[imum] ata[ngent] com[plex] or
 
 " triadic functions
 syn keyword uiuaTriadic insert audio
@@ -59,17 +60,18 @@ syn keyword uiuaTriadic insert audio
 " gap, dip, and identity single-letter spellings aren't accounted for
 " 1. it's not very useful since adjacent ones won't be highlighted
 " 2. it'll get formatted anyways
-syn keyword uiuaMonadicMod gap dip on by wit[h] off abo[ve] bel[ow] bac[kward] eac[h] row[s] tab[le] inv[entory] rep[eat] fol[d] reduce scan gro[up] par[tition] un ant[i] bot[h] con[tent] tup[les] memo quote comptime stringify spawn pool case struct obv[erse]
-syn match   uiuaMonadicMod '[⋅⊙⟜⊸⤙⤚◠◡˜⊞⍚∧/\\⊕⊜°⌝◇⌅]'
-syn match   uiuaMonadicMod '[∩≡∵⍥⧅]\(__[0-9]\+\|[₀-₉]\+\)\?'
-syn match   uiuaMonadicMod '\a\+\(__[0-9]\+\|[₀-₉]\+\)\?!'
+syn keyword uiuaMonadicMod gap dip on by wit[h] off abo[ve] bel[ow] rea[ch] bac[kward] eac[h] row[s] tab[le] inv[entory] rep[eat] fol[d] reduce scan gro[up] par[tition] un ant[i] bot[h] con[tent] tup[les] memo quote comptime spawn pool case struct obv[erse] st[encil]
+syn match   uiuaMonadicMod '[⋅⊙⟜⊸⤙⤚◠◡𝄈⊞∧/\\⊕⊜°⌝◇⌅⍩]'
+syn match   uiuaMonadicMod '[∩≡∵⍥⍚⧅⧈]\(₋\?[₀-₉]\+\)\?'
+syn match   uiuaMonadicMod '[∩≡∵⍚𝄐][⌞⌟]'
+syn match   uiuaMonadicMod '\a\+\(₋\?[₀-₉]\+\)\?!'
 
-syn keyword uiuaDyadicMod sw[itch] do und[er] fil[l] bra[cket] for[k] try
+syn keyword uiuaDyadicMod sw[itch] do und[er] fil[l] bra[cket] for[k] try path
 syn match   uiuaDyadicMod '[⨬⍢⍜⬚⊓⊃⍣]'
-syn match   uiuaDyadicMod '\a\+\(__[0-9]\+\|[₀-₉]\+\)\?\(!!\|‼\)'
+syn match   uiuaDyadicMod '[⊓][⌞⌟]'
+syn match   uiuaDyadicMod '\a\+\(₋\?[₀-₉]\+\)\?\(!!\|‼\)'
 
-syn keyword uiuaTriadicMod astar
-syn match   uiuaTriadicMod '\a\+\(__[0-9]\+\|[₀-₉]\+\)\?\(‼!\|!‼\|!\{3,}\|‼\{2,}!*\)'
+syn match   uiuaTriadicMod '\a\+\(₋\?[₀-₉]\+\)\?\(‼!\|!‼\|!\{3,}\|‼\{2,}!*\)'
 " }}}
 
 " {{{ system functions
@@ -79,7 +81,7 @@ syn match   uiuaTriadicMod '\a\+\(__[0-9]\+\|[₀-₉]\+\)\?\(‼!\|!‼\|!\{3,}
 " modules
 syn match   uiuaTriadicSF    '\v\&(memcpy)'
 syn match   uiuaDyadicSF     '\v\&(runs|rs|rb|ru|w|fwa|tcpsrt|tcpswt|ffi)'
-syn match   uiuaMonadicSF    '\v\&(sl|s|pf|p|raw|var|runi|runc|cd|cl|fo|fc|fde|ftr|fe|fld|fif|fras|frab|fwa|fmd|ims|gifs|ap|tlsc|tlsl|tcpl|tcpaddr|tcpa|tcpc|tcpsnb|invk|exit|memfree|camcap)'
+syn match   uiuaMonadicSF    '\v\&(sl|s|pf|p|ep|epf|raw|var|runi|runc|cd|cl|fo|fc|fde|ftr|fe|fld|fif|fras|frab|fwa|fmd|ims|gifs|ap|tlsc|tlsl|tcpl|tcpaddr|tcpa|tcpc|tcpsnb|invk|exit|memfree|camcap)'
 syn match   uiuaNoadicSF     '\v\&(clip|sc|ts|args|asr)'
 syn match   uiuaMonadicModSF '&ast'
 " }}}
@@ -89,7 +91,7 @@ syn match   uiuaMonadicModSF '&ast'
 syn keyword uiuaNum eta pi tau inf[inity]
 syn match   uiuaNum '[ηπτ∞]\|[¯`]\?\d\+\(\.\d\+\)\?\(e[¯`]\?\d\+\)\?'
 
-syn keyword uiuaNumShadow e i NaN W MaxInt True False NULL
+syn keyword uiuaNumShadow e i NaN W MaxInt True False NULL ε
 
 " escape sequence and format placeholder
 syn match   uiuaEsc contained /\\\([\\'"_0nrtW]\|\\x[0-9a-fA-F]\{2}\|\\u[0-9a-fA-F]\{2}\)/
@@ -122,13 +124,13 @@ syn match   uiuaModScope '^\(---\|┌─╴\|└─╴\)\(\a\+\( \~\( \a\+[‼!]
 syn match   uiuaModImportMember '\~\(\s\+\a\+[‼!]*\)\+$' contains=uiuaModPunct,uiuaModMemberName
 
 " debug functions and labels
-syn keyword uiuaDebug dump stack trac[e]
-syn match   uiuaDebug '⸮\|?\(__[0-9]\+\|[₀-₉]\+\)\?'
+syn keyword uiuaDebug dump stack
+syn match   uiuaDebug '?\(__[0-9]\+\|[₀-₉]\+\)\?'
 syn match   uiuaLabel '\$\a\+'
 
 " comments
-syn match   uiuaSemanticComment contained 'Track caller!\|Experimental!\|No inline!'
-syn match   uiuaSignatureComment contained '\(\a\+ \)*?\( \a\+\)\+'
+syn match   uiuaSemanticComment contained 'Track caller!\|Experimental!\|No inline!\|Deprecated!'
+syn match   uiuaSignatureComment contained '\(\a\+ \)*[?$]\( \a\+\)\+'
 syn region  uiuaComment start='#' end='$' contains=uiuaSemanticComment,uiuaSignatureComment
 " }}}
 
