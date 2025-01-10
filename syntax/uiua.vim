@@ -1,7 +1,7 @@
 " vim:foldmethod=marker
 " Handwritten Uiua syntax highlighting by Apeiros-46B
 " Experimental features included, deprecated features not included
-" VERSION: updated 2025.01.06 - for Uiua 0.15.0
+" VERSION: updated 2025.01.10 - for Uiua 0.15.0
 
 if exists("b:current_syntax")
 	finish
@@ -61,8 +61,8 @@ syn keyword uiuaTriadic insert audio
 " 1. it's not very useful since adjacent ones won't be highlighted
 " 2. it'll get formatted anyways
 syn keyword uiuaMonadicMod gap dip on by wit[h] off abo[ve] bel[ow] rea[ch] bac[kward] eac[h] row[s] tab[le] inv[entory] rep[eat] fol[d] reduce scan gro[up] par[tition] un ant[i] bot[h] con[tent] tup[les] memo quote comptime spawn pool case struct obv[erse] st[encil]
-syn match   uiuaMonadicMod '[⋅⊙⟜⊸⤙⤚◠◡𝄈⊞∧/\\⊕⊜°⌝◇⌅⍩]'
-syn match   uiuaMonadicMod '[∩≡∵⍥⍚⧅⧈]\(₋\?[₀-₉]\+\)\?'
+syn match   uiuaMonadicMod '[⋅⊙◠◡𝄈⊞∧/\\⊕⊜°⌝◇⌅⍩]'
+syn match   uiuaMonadicMod '[∩≡∵⍥⍚⧅⧈⟜⊸⤙⤚]\(₋\?[₀-₉]\+\)\?'
 syn match   uiuaMonadicMod '[∩≡∵⍚𝄐][⌞⌟]'
 syn match   uiuaMonadicMod '\a\+\(₋\?[₀-₉]\+\)\?!'
 
