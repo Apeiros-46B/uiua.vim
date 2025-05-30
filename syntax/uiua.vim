@@ -45,14 +45,14 @@ syn match   uiuaNoadic '⚂\(₋\?[₀-₉]\+\)\?'
 " monadic functions
 " tau, eta, pi, and infinity are considered numeric literals
 syn keyword uiuaMonadic len[gth] sha[pe] ran[ge] fir[st] las[t] rev[erse] des[hape] fix bit[s] tran[spose] ris[e] fal[e] sor[t] whe[re] cla[ssify] ded[uplicate] uni[que] box bx pars[e] occ[urrences] wait recv tryrecv type repr csv json xlsx datetime fft graphemes pretty voxels
-syn match   uiuaMonadic '[⧻△⇡⋯]\(₋\?[₀-₉]\+\)\?'
+syn match   uiuaMonadic '[⧻△⇡⋯]\(₋\?[₀-₉]\+\)\?' " numeric subscript
 syn match   uiuaMonadic '[⊢⊣⇌♭¤⍏⍖⍆⊚⊛◰◴⋕⧆]\|utf₈'
 syn keyword uiuaMonadicP not sig[n] abs[olute] sqr[t] sin[e] flo[or] cei[ling] rou[nd] ln
 
 " dyadic functions
 syn keyword uiuaDyadic joi[n] cou[ple] mat[ch] pic[k] sel[ect] res[hape] tak[e] dro[p] rot[ate] win[dows] kee[p] fin[d] mem[berof] ind[exof] ass[ert] mas[k] ori[ent] base pro[gressive] pidx send regex map has get remove img layout gif apng gen bytes
 syn match   uiuaDyadic '[≍↯⌕∊∈⊗⍤⦷⊥⊘]'
-syn match   uiuaDyadic '[▽]\([₀-₉]\+\)\?'
+syn match   uiuaDyadic '[▽]\([₀-₉]\+\)\?' " numeric subscript
 syn keyword uiuaDyadicP  add sub[tract] mul[tiply] div[ide] mod[ulus] pow[er] log[arithm] min[imum] max[imum] ata[ngent] com[plex] or
 
 " triadic functions
@@ -62,19 +62,19 @@ syn keyword uiuaTriadic insert audio
 " gap, dip, and identity single-letter spellings aren't accounted for
 " 1. it's not very useful since adjacent ones won't be highlighted
 " 2. it'll get formatted anyways
-syn keyword uiuaMonadicMod gap dip on by wit[h] off abo[ve] bel[ow] bac[kward] row[s] tab[le] inv[entory] rep[eat] fol[d] reduce scan gro[up] par[tition] un ant[i] bot[h] con[tent] tup[les] memo quote comptime spawn pool cas[e] obv[erse] st[encil] self ev[ert]
-syn match   uiuaMonadicMod '[⋅⊙◠◡𝄐˜⊞∧/\\⊕⊜°⌝◇⌅⍩˙⧋]'
-syn match   uiuaMonadicMod '[∩≡⍥⍚⧅⧈⟜⊸⤙⤚]\(₋\?[₀-₉]\+\)\?'
-syn match   uiuaMonadicMod '[∩≡⍚𝄐˜˙][⌞⌟]'
-syn match   uiuaMonadicMod '[∩≡⍚]\(₋\?[₀-₉]\+\)\?[⌞⌟]\(₋\?[₀-₉]\+\)\?'
-syn match   uiuaMonadicMod '\a\+\(₋\?[₀-₉]\+\)\?!'
+syn keyword uiuaMonadicMod gap dip on by wit[h] off abo[ve] bel[ow] bac[kward] row[s] tab[le] inv[entory] rep[eat] fol[d] reduce scan gro[up] par[tition] un ant[i] bot[h] con[tent] tup[les] memo quote comptime spawn pool cas[e] obv[erse] st[encil] self ev[ert] geo[metric]
+syn match   uiuaMonadicMod '[⋅⊙◠◡𝄐˜⊞∧/\\⊕⊜°⌝◇⌅⍩˙⧋⩜]'
+syn match   uiuaMonadicMod '[∩≡⍥⍚⧅⧈⟜⊸⤙⤚]\(₋\?[₀-₉]\+\)\?' " numeric subscript
+syn match   uiuaMonadicMod '[∩≡⍚𝄐˜˙][⌞⌟]' " sided subscript
+syn match   uiuaMonadicMod '[∩≡⍚]\(₋\?[₀-₉]\+\)\?[⌞⌟]\(₋\?[₀-₉]\+\)\?' " mixed subscript
+syn match   uiuaMonadicMod '\a\(\a\|[ηπτ]\)*\(₋\?[₀-₉]\+\)\?!'
 
 syn keyword uiuaDyadicMod sw[itch] do und[er] fil[l] bra[cket] for[k] try path
 syn match   uiuaDyadicMod '[⨬⍢⍜⬚⊓⊃⍣]'
-syn match   uiuaDyadicMod '[⬚⊓][⌞⌟]'
-syn match   uiuaDyadicMod '\a\+\(₋\?[₀-₉]\+\)\?\(!!\|‼\)'
+syn match   uiuaDyadicMod '[⬚⊓][⌞⌟]' " sided subscript
+syn match   uiuaDyadicMod '\a\(\a\|[ηπτ]\)*\(₋\?[₀-₉]\+\)\?\(!!\|‼\)'
 
-syn match   uiuaTriadicMod '\a\+\(₋\?[₀-₉]\+\)\?\(‼!\|!‼\|!\{3,}\|‼\{2,}!*\)'
+syn match   uiuaTriadicMod '\a\(\a\|[ηπτ]\)*\(₋\?[₀-₉]\+\)\?\(‼!\|!‼\|!\{3,}\|‼\{2,}!*\)'
 " }}}
 
 " {{{ system functions
