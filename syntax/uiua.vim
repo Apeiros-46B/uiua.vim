@@ -44,7 +44,7 @@ syn match   uiuaNoadic '⚂\(₋\?[₀-₉]\+\)\?'
 
 " monadic functions
 " tau, eta, pi, and infinity are considered numeric literals
-syn keyword uiuaMonadic len[gth] sha[pe] ran[ge] fir[st] las[t] rev[erse] des[hape] fix bit[s] tran[spose] ris[e] fal[e] sor[t] whe[re] cla[ssify] ded[uplicate] uni[que] box bx pars[e] occ[urrences] wait recv tryrecv type repr csv json xlsx datetime fft graphemes pretty voxels
+syn keyword uiuaMonadic len[gth] sha[pe] ran[ge] fir[st] las[t] rev[erse] des[hape] fix bit[s] tran[spose] ris[e] fal[e] sor[t] whe[re] cla[ssify] ded[uplicate] uni[que] box bx pars[e] occ[urrences] wait recv tryrecv type repr csv json xlsx datetime fft graphemes pretty voxels binary
 syn match   uiuaMonadic '[⧻△⇡⋯]\(₋\?[₀-₉]\+\)\?' " numeric subscript
 syn match   uiuaMonadic '[⊢⊣⇌♭¤⍏⍖⍆⊚⊛◰◴⋕⧆]\|utf₈'
 syn keyword uiuaMonadicP not sig[n] abs[olute] sqr[t] sin[e] flo[or] cei[ling] rou[nd] ln
@@ -62,8 +62,8 @@ syn keyword uiuaTriadic insert audio
 " gap, dip, and identity single-letter spellings aren't accounted for
 " 1. it's not very useful since adjacent ones won't be highlighted
 " 2. it'll get formatted anyways
-syn keyword uiuaMonadicMod gap dip on by wit[h] off abo[ve] bel[ow] bac[kward] row[s] tab[le] inv[entory] rep[eat] fol[d] reduce scan gro[up] par[tition] un ant[i] bot[h] con[tent] tup[les] memo quote comptime spawn pool cas[e] obv[erse] st[encil] self ev[ert] geo[metric]
-syn match   uiuaMonadicMod '[⋅⊙◠◡𝄐˜⊞∧/\\⊕⊜°⌝◇⌅⍩˙⧋⩜]'
+syn keyword uiuaMonadicMod gap dip on by wit[h] off abo[ve] bel[ow] rea[ch] bac[kward] row[s] tab[le] inv[entory] rep[eat] fol[d] reduce scan gro[up] par[tition] un ant[i] bot[h] con[tent] tup[les] memo quote comptime spawn pool cas[e] obv[erse] st[encil] self ev[ert] geo[metric] der[ivative] int[egral]
+syn match   uiuaMonadicMod '[⋅⊙◠◡𝄐˜⊞∧/\\⊕⊜°⌝◇⌅⍩˙⧋⩜∂∫]'
 syn match   uiuaMonadicMod '[∩≡⍥⍚⧅⧈⟜⊸⤙⤚]\(₋\?[₀-₉]\+\)\?' " numeric subscript
 syn match   uiuaMonadicMod '[∩≡⍚𝄐˜˙][⌞⌟]' " sided subscript
 syn match   uiuaMonadicMod '[∩≡⍚]\(₋\?[₀-₉]\+\)\?[⌞⌟]\(₋\?[₀-₉]\+\)\?' " mixed subscript
@@ -85,7 +85,7 @@ syn match   uiuaTriadicMod '\a\(\a\|[ηπτ]\)*\(₋\?[₀-₉]\+\)\?\(‼!\|!�
 syn match   uiuaTriadicSF    '\v\&(memcpy)'
 syn match   uiuaDyadicSF     '\v\&(runs|rs|rb|ru|w|fwa|tcpsrt|tcpswt|ffi|gifs)'
 syn match   uiuaMonadicSF    '\v\&(sl|s|pf|p|ep|epf|raw|var|runi|runc|cd|cl|fo|fc|fde|ftr|fe|fld|fif|fras|frab|fwa|fmd|ims|ap|tlsc|tlsl|tcpl|tcpaddr|tcpa|tcpc|tcpsnb|invk|exit|memfree|camcap)'
-syn match   uiuaNoadicSF     '\v\&(clip|sc|ts|args|asr)'
+syn match   uiuaNoadicSF     '\v\&(clip|sc|ts|args|asr|b)'
 syn match   uiuaMonadicModSF '&ast'
 
 " precedence issue with &ap
@@ -121,6 +121,9 @@ syn match   uiuaUnicodeLiteral '\\\\[0-9a-fA-F]\{,5}'
 " }}}
 
 " {{{ misc
+" optional arguments
+syn match   uiuaOptionalArg '\a\(\a\|[ηπτ]\)*\(₋\?[₀-₉]\+\)\?:'
+
 " function signatures
 syn match   uiuaSignature '|\d\+\(\.\d\+\)\?'
 
@@ -178,6 +181,7 @@ hi def link uiuaFmt              uiuaAqua
 hi def link uiuaStr              uiuaAqua
 hi def link uiuaUnicodeLiteral   uiuaForeground
 
+hi def link uiuaOptionalArg      uiuaGreen     
 hi def link uiuaSignature        uiuaForeground
 hi def link uiuaModPunct         uiuaForeground
 hi def link uiuaModName          uiuaBeige
