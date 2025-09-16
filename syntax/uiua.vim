@@ -1,7 +1,7 @@
 " vim:foldmethod=marker
 " Handwritten Uiua syntax highlighting by Apeiros-46B
 " Experimental features included, deprecated features not included
-" VERSION: updated 2025.05.30 - for Uiua 0.17.0-dev.1
+" VERSION: updated 2025.09.16 - for Uiua 0.17.0-rc.1
 
 if exists("b:current_syntax")
 	finish
@@ -11,7 +11,7 @@ let b:current_syntax = "uiua"
 syn iskeyword a-z,A-Z
 
 syn match   uiuaIdentifier   '\a\(\a\|[ηπτ]\)*\(₋\?[₀-₉]\+\)\?'
-syn match   uiuaMacroSpecial '\(\^[0-9]\+\|[←↚]^\)'
+syn match   uiuaMacroSpecial '\(\^[0-9]*\|[←↚]^\)'
 syn match   uiuaPunctuation  '[←↚_;~]\|=\~'
 syn match   uiuaDelimiters   '[\[\]{}()]'
 
@@ -24,7 +24,7 @@ syn match   uiuaDyadicP  '\(!=\|<=\|>=\|[=≠<≤>≥+\-×*÷%◿ⁿₙ↧↥∠
 syn match   uiuaMonadic  '□\(₀*₁\)\?\|[⊟⊂]\(₀*₁\)'
 syn match   uiuaMonadic  '⍉\(₋\?[₀-₉]\+\)\?'
 syn match   uiuaMonadic  '[⊏⊡↙↘↻⤸◫]\(₋\?[₀-₉]\+\)'
-syn match   uiuaMonadicP '[¬±`⌵∿]\|[¯√⌊⌈⁅]\(₋\?[₀-₉]\+\)\?'
+syn match   uiuaMonadicP '[¬±`⌵∿⨪]\|[¯√⌊⌈⁅]\(₋\?[₀-₉]\+\)\?'
 syn match   uiuaMonadicP '\(!=\|<=\|>=\|[=≠<≤>≥+\-×*÷%◿ⁿₙ↧↥∠ℂ]\)\(₋\?[₀-₉]\+\|[⌞⌟]\)'
 syn match   uiuaDyadic   '[□⊂]₀*₂'
 syn match   uiuaTriadic  '[⊟□⊂]₀*₃'
@@ -44,14 +44,14 @@ syn match   uiuaNoadic '⚂\(₋\?[₀-₉]\+\)\?'
 
 " monadic functions
 " tau, eta, pi, and infinity are considered numeric literals
-syn keyword uiuaMonadic len[gth] sha[pe] ran[ge] fir[st] las[t] rev[erse] des[hape] fix bit[s] tran[spose] ris[e] fal[e] sor[t] whe[re] cla[ssify] ded[uplicate] uni[que] box bx pars[e] occ[urrences] wait recv tryrecv type repr csv json xlsx datetime fft graphemes pretty voxels binary
-syn match   uiuaMonadic '[⧻△⇡⋯]\(₋\?[₀-₉]\+\)\?' " numeric subscript
-syn match   uiuaMonadic '[⊢⊣⇌♭¤⍏⍖⍆⊚⊛◰◴⋕⧆]\|utf₈'
-syn keyword uiuaMonadicP not sig[n] abs[olute] sqr[t] sin[e] flo[or] cei[ling] rou[nd] ln
+syn keyword uiuaMonadic len[gth] sha[pe] ran[ge] fir[st] las[t] rev[erse] des[hape] fix bit[s] tran[spose] ris[e] fal[e] sor[t] whe[re] cla[ssify] ded[uplicate] box bx pars[e] occ[urrences] wait recv tryrecv type repr csv json xlsx datetime fft graphemes pretty voxels binary
+syn match   uiuaMonadic '[⧻△⇡⋯⋕⧆]\(₋\?[₀-₉]\+\)\?' " numeric subscript
+syn match   uiuaMonadic '[⊢⊣⇌♭¤⍏⍖⍆⊚⊛◰◴]\|utf₈'
+syn keyword uiuaMonadicP not sig[n] abs[olute] sqr[t] sin[e] flo[or] cei[ling] rou[nd] ln rec[iprocal]
 
 " dyadic functions
-syn keyword uiuaDyadic joi[n] cou[ple] mat[ch] pic[k] sel[ect] res[hape] tak[e] dro[p] rot[ate] win[dows] kee[p] fin[d] mem[berof] ind[exof] ass[ert] mas[k] ori[ent] base pro[gressive] pidx send regex map has get remove img layout gif apng gen bytes
-syn match   uiuaDyadic '[≍↯⌕∊∈⊗⍤⦷⊥⊘]'
+syn keyword uiuaDyadic joi[n] cou[ple] mat[ch] pic[k] sel[ect] res[hape] tak[e] dro[p] rot[ate] win[dows] kee[p] fin[d] mem[berof] ind[exin] ass[ert] mas[k] ori[ent] base pro[gressive] pidx send regex map has get remove img layout gif apng gen bytes
+syn match   uiuaDyadic '[≍↯⌕∊∈⨂⍤⦷⊥⊘]'
 syn match   uiuaDyadic '[▽]\([₀-₉]\+\)\?' " numeric subscript
 syn keyword uiuaDyadicP  add sub[tract] mul[tiply] div[ide] mod[ulus] pow[er] log[arithm] min[imum] max[imum] ata[ngent] com[plex] or
 
@@ -75,6 +75,7 @@ syn match   uiuaDyadicMod '[⬚⊓][⌞⌟]' " sided subscript
 syn match   uiuaDyadicMod '\a\(\a\|[ηπτ]\)*\(₋\?[₀-₉]\+\)\?\(!!\|‼\)'
 
 syn match   uiuaTriadicMod '\a\(\a\|[ηπτ]\)*\(₋\?[₀-₉]\+\)\?\(‼!\|!‼\|!\{3,}\|‼\{2,}!*\)'
+syn keyword uiuaTriadicMod recur
 " }}}
 
 " {{{ system functions
@@ -82,9 +83,9 @@ syn match   uiuaTriadicMod '\a\(\a\|[ηπτ]\)*\(₋\?[₀-₉]\+\)\?\(‼!\|!�
 " &s and &sc, etc. is correct
 
 " modules
-syn match   uiuaTriadicSF    '\v\&(memcpy)'
-syn match   uiuaDyadicSF     '\v\&(runs|rs|rb|ru|w|fwa|tcpsrt|tcpswt|ffi|gifs)'
-syn match   uiuaMonadicSF    '\v\&(sl|s|pf|p|ep|epf|raw|var|runi|runc|cd|cl|fo|fc|fde|ftr|fe|fld|fif|fras|frab|fwa|fmd|ims|ap|tlsc|tlsl|tcpl|tcpaddr|tcpa|tcpc|tcpsnb|invk|exit|memfree|camcap)'
+syn match   uiuaTriadicSF    '\v\&(memcpy|udps)'
+syn match   uiuaDyadicSF     '\v\&(runs|rs|rb|ru|w|fwa|tcpsrt|tcpswt|udpsml|ffi|gifs)'
+syn match   uiuaMonadicSF    '\v\&(sl|s|pf|p|ep|epf|raw|var|runi|runc|cd|cl|fo|fc|fde|ftr|fe|fld|fif|fras|frab|fwa|fmd|ims|ap|tlsc|tlsl|tcpl|tcpaddr|tcpa|tcpc|tcpsnb|udpb|udpr|invk|exit|memfree|camcap)'
 syn match   uiuaNoadicSF     '\v\&(clip|sc|ts|args|asr|b)'
 syn match   uiuaMonadicModSF '&ast'
 
